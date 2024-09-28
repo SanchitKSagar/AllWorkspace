@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Deposit</title>
+</head>
+<body>
+<a th:href="@{/}">Home</a><br/>
+<a th:href="@{/checkBalance}">Check Balance</a><br/>
+<hr/>
+
+<span th:text="${withdraw_msg}" style="color:red"></span>
+<h2>Withdraw from Account</h2>
+
+<form th:action = "@{/withdrawButton(accNo=${accNo})}" method="post">
+	<label>Account Number: </label>
+	<span th:text = "${accNo}" style="color:red"></span><br/>
+	<label>Name: </label>
+	<span th:text = "${accName}" style="color:red"></span><br/>
+	<label>Current Amount: </label>
+	<span th:text = "${accAmt}" style="color:red"></span><br/>
+	<label>Enter Withdraw Amount </label>
+	<input type="number" th:value="${amount}" id="amount" name="amount"><br/>
+	<input type="submit" name="withdrawButton" value = "Withdraw">
+	
+</form>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Deposit</title>
+</head>
+<body>
+<a th:href="@{/}">Home</a><br/>
+<hr/>
+
+<span th:text="${checkBal_msg}" style="color:red"></span>
+<h2>Check Balance</h2>
+
+<form th:action = "@{/checkButton}" method="post">
+	<label>Enter Account Number </label>
+	<input type="number" th:value="${accountNo}" name="accountNo"><br/>
+	<input type="submit" name="checkBalanceButton" value = "Check Balance">
+</form>
+
+<br>
+<div th:if="${isResultPresent}">
+	<label>Name: </label>
+	<span th:text = "${accName}" style="color:red"></span><br/>
+	<label>Current Amount: </label>
+	<span th:text = "${accAmt}" style="color:red"></span><br/><br/>
+	
+	<a th:href="@{/deposit(accntNo=${accountNo})}">Deposit</a>
+	<br/>
+	<a th:href="@{/withdraw(accntNo=${accountNo})}">Withdraw</a>
+		
+</div>
+
+</body>
+</html>

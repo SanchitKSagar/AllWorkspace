@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Deposit</title>
+</head>
+<body>
+<a th:href="@{/}">Home</a><br/>
+<a th:href="@{/checkBalance}">Check Balance</a><br/>
+<hr/>
+
+<span th:text="${deposit_msg}" style="color:red"></span>
+<h2>Deposit on Account</h2>
+
+<form th:action = "@{/depositButton(accNo=${accNo},isPanRequired=${isPanRequired})}" method="post">
+	<label>Account Number: </label>
+	<span th:text = "${accNo}" style="color:red"></span><br/>
+	<label>Name: </label>
+	<span th:text = "${accName}" style="color:red"></span><br/>
+	<label>Current Amount: </label>
+	<span th:text = "${accAmt}" style="color:red"></span><br/>
+	<label>Enter Deposit Amount </label>
+	<input type="number" th:value="${amount}" id="amount" name="amount"><br/>
+	<div th:if="${isPanRequired}">
+		<label>Enter PAN Number</label>
+		<input type="text" name="PANNumber" id="PANNumber">
+	</div>
+	<input type="submit" name="depositButton" value = "Deposit">
+	
+</form>
+
+</body>
+</html>

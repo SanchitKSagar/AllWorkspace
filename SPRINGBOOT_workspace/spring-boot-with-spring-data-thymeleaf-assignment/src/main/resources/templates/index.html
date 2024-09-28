@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Account Application</title>
+</head>
+<body>
+<a th:href="@{/checkBalance}">Check Balance</a><br/>
+<hr/>
+<span th:text="${msg}" style="color:red"></span>
+<h2>Add New Account</h2>
+<form th:object="${accnt}"  th:action="@{/storeaccount}" method="post">
+	<label>Account Number</label>
+	<input type="number" th:field="*{accountNo}"><br/>
+	<label>Name</label>
+	<input type="text" th:field="*{name}"><br/>
+	<label>Amount</label>
+	<input type="number" th:field="*{amount}"><br/>
+	<input type="submit" name="submitButton" value = "Add Account">
+</form>
+
+<hr/>
+<a href="/retrieveAllAccounts"> Retrieve All Accounts</a>
+<table border="1" th:if="${showTable}">
+	<tr>
+		<th>Account Number</th>
+		<th>Name</th>
+		<th>Amount</th>
+		<th>Deposit</th>
+		<th>Withdraw</th>
+	</tr>
+	<tr th:each="account:${listOfAccounts}">
+		<td th:text="${account.accountNo}"></td>
+		<td th:text="${account.name}"></td>
+		<td th:text="${account.amount}"></td>
+		<td><a th:href="@{/deposit(accntNo=${account.accountNo})}">Deposit</a></td>
+		<td><a th:href="@{/withdraw(accntNo=${account.accountNo})}">Withdraw</a></td>
+	</tr>
+</table>
+</body>
+</html>
